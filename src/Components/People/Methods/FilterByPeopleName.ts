@@ -1,0 +1,1 @@
+export const FilterByPeopleName = (PeopleName:string, searchInput:string) => PeopleName.toLowerCase().startsWith(searchInput.toLowerCase());
