@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, createContext } from 'react';
+import { Button } from 'react-bootstrap';
 import { usePeople } from '../People/Hooks/usePeople';
 import SearchBar from '../SearchBar/SearchBar';
 import MainTable from '../Table/MainTable';
@@ -14,7 +15,10 @@ function App() {
   return (
     <div className={AppStyle}>
       <ListOfPeopleTitle/>
-      <SearchBar setSearchInput={setSearchInput}/>
+      <div className="input-group mb-3 mt-4">
+        <SearchBar setSearchInput={setSearchInput}/>
+        <Button variant='primary'>Create person</Button>
+      </div>
       <MainTable ListOfPeople={listOfPeople} SearchInput={SearchInput}/>
     </div>
   );
