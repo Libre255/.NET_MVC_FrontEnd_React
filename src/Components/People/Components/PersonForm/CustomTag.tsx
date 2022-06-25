@@ -1,7 +1,7 @@
 import React, { LegacyRef } from 'react'
 import { Button, Dropdown, InputGroup } from 'react-bootstrap'
 import styles from '../../CSS/PersonForm.module.css';
-import { IPeople } from '../../Ipeople';
+import { IPersonForm } from '../PersonFormModal/IPersonForm';
 
 type CustomToggleProps = {
   children?: React.ReactNode;
@@ -22,7 +22,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }:CustomToggleProps, 
   </div>
 ));
 interface Props{
-  PersonState:[IPeople, React.Dispatch<React.SetStateAction<IPeople>>]
+  PersonState:[IPersonForm, React.Dispatch<React.SetStateAction<IPersonForm>>]
 }
 const CustomTag :React.FC<Props> = ({PersonState}) => {
   const [personFormProps, setPersonFormProps] = PersonState;

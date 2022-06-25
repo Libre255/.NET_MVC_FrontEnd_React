@@ -14,7 +14,7 @@ const MainTable :React.FC<Props> = ({ListOfPeople, SearchInput}) =>
     <tbody>
         {ListOfPeople
           .filter(People => FilterByPeopleName(People.name, SearchInput)) 
-          .map(People => <PersonRow key={People.id} Person={People}/>)}
+          .map((People, index) => <PersonRow key={index} Person={People}/>)}
     </tbody>
 </Table>;
 

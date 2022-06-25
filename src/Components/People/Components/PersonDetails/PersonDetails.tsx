@@ -1,42 +1,40 @@
 import React, { useState } from 'react'
-import { Button, Modal } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { IPeople } from '../../Ipeople';
-import PersonModalFooter from './PersonModalFooter';
-import PersonForm from '../PersonForm/PersonForm';
-
-interface Props{
-    Person:IPeople;
-}
+import PersonFormModal from '../PersonFormModal/PersonFormModal';
 
 const PersonDetails :React.FC<Props> = ({Person}) => {
     const [show, setShow] = useState(false);
-    const [personFormProps, setPersonFormProps] = useState<IPeople>(Person);
 
-    const handleSaveBtn = () => {
+    const handleSaveBtn = (a:any) => {
         setShow(false)
-        console.log("handleSaveBtn ",personFormProps);
+        console.log(a);
     };
     const handleDeletBtn = ()=>{
         setShow(false)
     }
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        // setPersonFormProps(Person);
+        setShow(true)};
     const handleClose = () => setShow(false);
 
     return(
-    <>
-        <Button variant="info" onClick={handleShow}> Details </Button>
-        <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-                <Modal.Title color='black'>{Person.name+" Details"}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <PersonForm Person={Person} PersonFormPropsState={[personFormProps, setPersonFormProps]}/>
-            </Modal.Body>
-            <PersonModalFooter handleDeletBtn={handleDeletBtn} handleSaveBtn={handleSaveBtn}/>
-        </Modal>
-    </>
-
+        <>
+            <Button variant="info" onClick={handleShow}> Details </Button>
+            <PersonFormModal title={`${Person.name} Details`} Person={Person}
+                             modalAction={{
+                                show:show,
+                                handleClose:handleClose
+                             }}
+                             modalButtons={[
+                                {name:"Save Changes", type:'info', clickEvent:handleSaveBtn},
+                                {name:"Delet Person", type:'danger', clickEvent:handleDeletBtn}
+                             ]}
+                             />
+        </>
     )
-}
-
+};
+interface Props{
+    Person:IPeople;
+};
 export default PersonDetails 
