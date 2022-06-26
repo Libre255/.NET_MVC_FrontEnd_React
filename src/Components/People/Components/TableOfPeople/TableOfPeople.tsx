@@ -4,19 +4,19 @@ import PersonRow from './PersonRow';
 import { IPeople } from '../../Ipeople';
 import { FilterByPeopleName } from '../../Methods/FilterByPeopleName';
 
-interface Props {
-  ListOfPeople:IPeople[];
-  SearchInput:string;
-}
 const TableOfPeople :React.FC<Props> = ({ListOfPeople, SearchInput}) =>
 <Table striped bordered hover variant='dark'>
     <TableHead/>
     <tbody>
         {ListOfPeople
-          .filter(People => FilterByPeopleName(People.name, SearchInput)) 
+          .filter(People => FilterByPeopleName(People.name, SearchInput))
           .map((People) => <PersonRow key={People.id} Person={People}/>)}
     </tbody>
 </Table>;
+interface Props {
+  ListOfPeople:IPeople[];
+  SearchInput:string;
+};
 
 const TableHead :React.FC = () =>
 <thead>

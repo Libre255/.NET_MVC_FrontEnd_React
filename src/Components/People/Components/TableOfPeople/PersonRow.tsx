@@ -8,7 +8,7 @@ const PersonRow :React.FC<Props> = ({Person}) =>
   <td>{Person.name}</td>
   <td>{Person.phoneNumber}</td>
   <td>{Person.city}</td>
-  <td>{Person.languages.map(L => <span className="m-1">{L}</span>)}</td>
+  <td>{Person.languages.map((Language, I)=> <span key={I} className="m-1">{Language}</span>)}</td>
   <td>
       <PersonDetails Person={Person}/>
   </td>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Modal, ModalHeader } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
 import { IPeople } from '../../Ipeople'
 import PersonForm from '../PersonForm/PersonForm'
 import { CleanPersonFormInputs, IPersonForm } from './IPersonForm'

@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { Button } from 'react-bootstrap'
+import React from 'react'
 import CreatePerson from '../People/Components/CreatePerson/CreatePerson'
 import SearchBar from '../SearchBar/SearchBar'
 
