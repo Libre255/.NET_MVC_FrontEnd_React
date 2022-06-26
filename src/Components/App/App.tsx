@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { usePeople } from '../People/Hooks/usePeople';
-import MainTable from '../Table/MainTable';
+import TableOfPeople from '../People/Components/TableOfPeople/TableOfPeople';
 import styles from './App.module.css';
 import GlobalContext from './GlobalContext';
 import HeaderInputs from './HeaderInputs';
@@ -17,7 +17,7 @@ function App() {
       <div className={AppStyle}>
         <ListOfPeopleTitle/>
         <HeaderInputs setSearchInput={setSearchInput}/>
-        <MainTable ListOfPeople={listOfPeople} SearchInput={SearchInput}/>
+        <TableOfPeople ListOfPeople={listOfPeople} SearchInput={SearchInput}/>
       </div>
     </GlobalContext>
   );

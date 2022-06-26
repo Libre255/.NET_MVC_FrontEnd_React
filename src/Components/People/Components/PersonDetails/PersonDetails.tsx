@@ -1,20 +1,20 @@
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { IPeople } from '../../Ipeople';
+import { IPersonForm } from '../PersonFormModal/IPersonForm';
 import PersonFormModal from '../PersonFormModal/PersonFormModal';
 
 const PersonDetails :React.FC<Props> = ({Person}) => {
     const [show, setShow] = useState(false);
 
-    const handleSaveBtn = (a:any) => {
+    const handleSaveBtn = (personFormInputs:IPersonForm) => {
         setShow(false)
-        console.log(a);
+        console.log(personFormInputs);
     };
     const handleDeletBtn = ()=>{
         setShow(false)
     }
     const handleShow = () => {
-        // setPersonFormProps(Person);
         setShow(true)};
     const handleClose = () => setShow(false);
 

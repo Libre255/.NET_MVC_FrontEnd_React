@@ -1,20 +1,20 @@
 import React from 'react'
 import {Table} from 'react-bootstrap';
-import PersonRow from '../People/Components/PersonRow';
-import { IPeople } from '../People/Ipeople';
-import { FilterByPeopleName } from '../People/Methods/FilterByPeopleName';
+import PersonRow from './PersonRow';
+import { IPeople } from '../../Ipeople';
+import { FilterByPeopleName } from '../../Methods/FilterByPeopleName';
 
 interface Props {
   ListOfPeople:IPeople[];
   SearchInput:string;
 }
-const MainTable :React.FC<Props> = ({ListOfPeople, SearchInput}) =>
+const TableOfPeople :React.FC<Props> = ({ListOfPeople, SearchInput}) =>
 <Table striped bordered hover variant='dark'>
     <TableHead/>
     <tbody>
         {ListOfPeople
           .filter(People => FilterByPeopleName(People.name, SearchInput)) 
-          .map((People, index) => <PersonRow key={index} Person={People}/>)}
+          .map((People) => <PersonRow key={People.id} Person={People}/>)}
     </tbody>
 </Table>;
 
@@ -30,4 +30,4 @@ const TableHead :React.FC = () =>
   </tr>
 </thead>;
 
-export default MainTable 
+export default TableOfPeople 
