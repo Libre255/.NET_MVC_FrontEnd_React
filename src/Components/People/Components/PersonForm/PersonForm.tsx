@@ -11,6 +11,7 @@ const PersonForm :React.FC<Props> = ({personFormDetails}) => {
   const [personDetails, setPersonFormDetails] = personFormDetails;
   const {CitiesList} = useCities();
   const {LanguagesList} = useLanguages();
+  
   const updateName = (e:any)=> setPersonFormDetails(p => ({...p, name:e.target.value}));
   const updatePhoneNumber = (e:any)=> setPersonFormDetails(p => ({...p, phoneNumber:e.target.value}));
   const updateCity =(e:any)=> setPersonFormDetails(p => ({...p, city:e.target.value}));
