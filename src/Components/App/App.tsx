@@ -10,7 +10,7 @@ const AppStyle:string = `${styles.App} ${styles.Center} border border-dark conta
 
 function App() {
   const {listOfPeople} = usePeople();
-  const [SearchInput, setSearchInput] = useState("");
+  const [SearchInput, setSearchInput] = useState<string>("");
  
   return (
     <GlobalContext>

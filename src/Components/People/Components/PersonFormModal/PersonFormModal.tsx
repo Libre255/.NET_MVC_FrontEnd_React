@@ -10,7 +10,7 @@ const PersonFormModal :React.FC<Props> = ({title, modalAction: showState, Person
     const [personFormDetails, setPersonFormDetails] = useState<IPersonForm>(Person || CleanPersonFormInputs);
     const {show, handleClose}  = showState;
 
-    useEffect(() => { setPersonFormDetails(Person ?? CleanPersonFormInputs ) }, [show]);
+    useEffect(() => { setPersonFormDetails(Person ?? CleanPersonFormInputs ) }, [show, Person]);
     
     return(
         <Modal show={show} onHide={handleClose}>

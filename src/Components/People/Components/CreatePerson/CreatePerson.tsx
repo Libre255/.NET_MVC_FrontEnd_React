@@ -5,7 +5,7 @@ import PersonFormModal from '../PersonFormModal/PersonFormModal';
 const CreatePerson :React.FC = () => {
     const [show, setshow] = useState(false);
     const handleClose = ()=>{setshow(false)};
-    const handleCreateBtn = ()=>{};
+    const handleCreateBtn = (e:any)=>{};
     return(
     <div>
         <Button variant='primary' onClick={()=>setshow(true)}>Create person</Button>

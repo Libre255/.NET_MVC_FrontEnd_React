@@ -11,10 +11,10 @@ const SelectInput :React.FC<Props> = ({Name, onChangeFun, ListOfOptions, Selecte
 <InputGroup className="input-group mb-3">
     <InputGroup.Text>{Name}</InputGroup.Text>
     <Form.Select aria-label="Default select example"className="form-select" onChange={onChangeFun}>
-        <option>{SelectedItem}</option>
-        {ListOfOptions.map((options, index) => 
-            <option key={index} value={options}>
-                {options}
+        {ListOfOptions.map((optionValue, index) => 
+            optionValue === SelectedItem ? <option selected key={index} value={optionValue}>{optionValue}</option>:
+            <option key={index} value={optionValue}>
+                {optionValue}
             </option>)}
     </Form.Select>
 </InputGroup>;
