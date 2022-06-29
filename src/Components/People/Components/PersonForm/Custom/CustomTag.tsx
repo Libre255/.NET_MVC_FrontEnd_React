@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react'
+import React from 'react'
 import { Button, Dropdown, InputGroup } from 'react-bootstrap'
 import { IPersonForm } from '../../PersonFormModal/IPersonForm';
 import { CustomToggle } from './CustomToggle';
@@ -7,12 +7,12 @@ const CustomTag :React.FC<Props> = ({PersonState, OptionsList}) => {
   const [personFormProps, setPersonFormProps] = PersonState;
   const handleSelectTag = (e:any)=> {
     e.preventDefault();
-    setPersonFormProps(l => {
+    setPersonFormProps(LanguagesList => {
       if(personFormProps.languages.includes(e.target.value)){
-        return l;
+        return LanguagesList;
       }
       else{
-        return {...l, languages:[...l.languages, e.target.value]}
+        return {...LanguagesList, languages:[...LanguagesList.languages, e.target.value]}
       }
     })
   };
