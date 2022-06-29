@@ -13,7 +13,7 @@ const InputBox :React.FC<Props> = ({name, inputType, inputValue, onChangeFun, in
     <InputGroup.Text>
         {name}
     </InputGroup.Text>
-    <FormControl type={inputType} value={inputValue ?? undefined} onChange={onChangeFun}/>
+    <FormControl type={inputType} value={inputValue ?? ""} onChange={onChangeFun}/>
     <Form.Control.Feedback type="invalid">
         {invalidText}
     </Form.Control.Feedback>

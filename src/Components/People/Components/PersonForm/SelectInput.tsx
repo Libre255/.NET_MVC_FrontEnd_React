@@ -7,19 +7,12 @@ interface Props{
     ListOfOptions:string[];
     SelectedItem:string;
 }
-const SelectInput :React.FC<Props> = ({Name, onChangeFun, ListOfOptions, SelectedItem}) =>
+const SelectInput :React.FC<Props> = ({Name, onChangeFun, ListOfOptions, SelectedItem}) => 
 <InputGroup className="input-group mb-3">
     <InputGroup.Text>{Name}</InputGroup.Text>
-    <Form.Select aria-label="Default select example" defaultValue={"-- select an option --"} className="form-select" onChange={onChangeFun}>
+    <Form.Select value={SelectedItem === "" ? "-- select an option --" : SelectedItem} className="form-select" onChange={onChangeFun}>
         <option hidden disabled value={"-- select an option --"}> -- select an option -- </option>
-        {ListOfOptions.map((optionValue, index) =>{
-            if(SelectedItem === optionValue){
-                return <option selected key={index} value={optionValue}>{optionValue}</option>
-            }else {
-                return <option  key={index} value={optionValue}>{optionValue}</option>
-            }
-        }
-        )}
+        {ListOfOptions.map((optionValue, index) =><option  key={index} value={optionValue}>{optionValue}</option>)}
     </Form.Select>
 </InputGroup>;
 export default SelectInput;

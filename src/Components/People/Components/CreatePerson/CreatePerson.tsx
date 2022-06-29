@@ -1,16 +1,14 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
-import { IPeople } from '../../Ipeople';
 import PersonFormModal from '../PersonFormModal/PersonFormModal';
 
 const CreatePerson :React.FC = () => {
     const [show, setshow] = useState(false);
     const handleClose = ()=>{setshow(false)};
     const handleCreateBtn = async(NewPeopleData:any)=>{
-        // console.log(NewPeopleData);
-        const postResult = await axios.post('https://localhost:7293/ReactMVCPeopleList/AddPerson',NewPeopleData); //got it
-        console.log(postResult);
+        setshow(false)
+        const {data} = await axios.post('https://localhost:7293/ReactMVCPeopleList/AddPerson',NewPeopleData); 
     };
     return(
     <div>
