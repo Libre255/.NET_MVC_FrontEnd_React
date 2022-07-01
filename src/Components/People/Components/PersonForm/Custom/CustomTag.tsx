@@ -3,36 +3,26 @@ import { Button, Dropdown, InputGroup } from 'react-bootstrap'
 import { IPersonForm } from '../../PersonFormModal/IPersonForm';
 import { CustomToggle } from './CustomToggle';
 
-const CustomTag :React.FC<Props> = ({PersonState, OptionsList}) => {
-  const [personFormProps, setPersonFormProps] = PersonState;
-  const handleSelectTag = (e:any)=> {
-    e.preventDefault();
-    setPersonFormProps(LanguagesList => {
-      if(personFormProps.languages.includes(e.target.value)){
-        return LanguagesList;
-      }
-      else{
-        return {...LanguagesList, languages:[...LanguagesList.languages, e.target.value]}
-      }
-    })
-  };
+const CustomTag :React.FC<Props> = ({values, handleChange, OptionsList}) => {
+ 
   return(
     <InputGroup className="input-group mb-3">
         <InputGroup.Text id="basic-addon1">Language</InputGroup.Text>
         <Dropdown >
             <Dropdown.Toggle as={CustomToggle}>
-                {personFormProps.languages.map((t, index)=> <Button className='m-1' key={index}>{t}</Button>)}
+                {values.map((t, index)=> <Button className='m-1' key={index}>{t}</Button>)}
             </Dropdown.Toggle>
 
             <Dropdown.Menu >
-                {OptionsList.map((option, i)=> <Dropdown.Item key={i} onClick={handleSelectTag} as={"button"} value={option}>{option}</Dropdown.Item>)}
+                {OptionsList.map((option, i)=> <Dropdown.Item as={"button"} type={"button"} key={i} onClick={()=>handleChange(`languages[${values.length}]`, option)}  value={option}>{option}</Dropdown.Item>)}
             </Dropdown.Menu>
         </Dropdown>
     </InputGroup>
   )
 }
 interface Props{
-  PersonState:[IPersonForm, React.Dispatch<React.SetStateAction<IPersonForm>>];
+  values:string[];
+  handleChange: any;
   OptionsList:string[];
 }
 export default CustomTag 

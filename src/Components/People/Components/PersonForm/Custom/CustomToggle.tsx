@@ -13,7 +13,6 @@ export const CustomToggle = React.forwardRef(({ children, onClick }:CustomToggle
       ref={ref}
       onClick={(e) => {
         onClick(e);
-        // e.preventDefault();
       }}
     >
       {children}

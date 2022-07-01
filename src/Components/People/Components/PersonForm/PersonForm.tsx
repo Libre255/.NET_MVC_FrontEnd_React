@@ -1,3 +1,4 @@
+import { FormikProvider, useFormik } from 'formik';
 import React from 'react'
 import { Form } from 'react-bootstrap'
 import { useCities } from '../../../../Citites/Hooks/useCities';
@@ -11,22 +12,32 @@ const PersonForm :React.FC<Props> = ({personFormDetails}) => {
   const [personDetails, setPersonFormDetails] = personFormDetails;
   const {CitiesList} = useCities();
   const {LanguagesList} = useLanguages();
-  
-  const updateName = (e:any)=> setPersonFormDetails(p => ({...p, name:e.target.value}));
-  const updatePhoneNumber = (e:any)=> setPersonFormDetails(p => ({...p, phoneNumber:e.target.value}));
-  const updateCity =(e:any)=> setPersonFormDetails(p => ({...p, city:e.target.value}));
-  
+
+  const formik  = useFormik({
+    initialValues:{
+      name:personDetails.name,
+      phoneNumber:personDetails.phoneNumber,
+      city:personDetails.city,
+      languages:personDetails.languages
+    },
+    onSubmit: values => {
+
+      alert(JSON.stringify(values, null, 2));
+
+    },
+    enableReinitialize:true
+  })
   return(
-    <Form>
-      <InputBox inputType="text" inputValue={personDetails.name} 
-                name="Name" onChangeFun={updateName} 
+    <Form onSubmit={formik.handleSubmit}>
+      <InputBox inputType="text" inputValue={formik.values.name} 
+                name="Name" onChangeFun={formik.handleChange} 
                 invalidText="Please write your name" />
-      <InputBox inputType="number" inputValue={personDetails.phoneNumber} 
-                name="Phone Number" onChangeFun={updatePhoneNumber} 
+      <InputBox inputType="number" inputValue={formik.values.phoneNumber} 
+                name="Phone Number" onChangeFun={formik.handleChange} 
                 invalidText="Please insert a phone number." />
-      <SelectInput Name='City' SelectedItem={personDetails.city} 
-                   onChangeFun={updateCity} ListOfOptions={CitiesList}/>
-      <CustomTag PersonState={[personDetails, setPersonFormDetails]} OptionsList={LanguagesList}/>
+      <SelectInput Name='City' SelectedItem={formik.values.city} 
+                   onChangeFun={formik.handleChange} ListOfOptions={CitiesList}/>
+      <CustomTag values={formik.values.languages} handleChange={formik.setFieldValue} OptionsList={LanguagesList}/>
     </Form>
   )
 }

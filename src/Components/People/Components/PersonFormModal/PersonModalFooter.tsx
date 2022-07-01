@@ -4,7 +4,7 @@ import { IPersonForm } from './IPersonForm';
 
 const PersonModalFooter :React.FC<Props> = ({modalButtons, personFormDetails}) => 
 <Modal.Footer>
-    {modalButtons.map((button, index) => <Button variant={button.type} onClick={()=>button.clickEvent(personFormDetails)} key={index}>{button.name}</Button>)}
+    {modalButtons.map((button, index) => <Button variant={button.type} type={'submit'} onClick={()=>button.clickEvent(personFormDetails)} key={index}>{button.name}</Button>)}
 </Modal.Footer>;
 
 interface Props{
