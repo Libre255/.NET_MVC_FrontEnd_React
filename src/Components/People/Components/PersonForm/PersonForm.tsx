@@ -1,4 +1,4 @@
-import { FormikProvider, useFormik } from 'formik';
+import { FormikErrors } from 'formik/dist/types';
 import React from 'react'
 import { Form } from 'react-bootstrap'
 import { useCities } from '../../../../Citites/Hooks/useCities';
@@ -8,40 +8,30 @@ import CustomTag from './Custom/CustomTag';
 import InputBox from './InputBox';
 import SelectInput from './SelectInput';
 
-const PersonForm :React.FC<Props> = ({personFormDetails}) => {
-  const [personDetails, setPersonFormDetails] = personFormDetails;
+const PersonForm :React.FC<Props> = ({personDetails, handleChanges, setField}) => {
   const {CitiesList} = useCities();
   const {LanguagesList} = useLanguages();
-
-  const formik  = useFormik({
-    initialValues:{
-      name:personDetails.name,
-      phoneNumber:personDetails.phoneNumber,
-      city:personDetails.city,
-      languages:personDetails.languages
-    },
-    onSubmit: values => {
-
-      alert(JSON.stringify(values, null, 2));
-
-    },
-    enableReinitialize:true
-  })
+  
   return(
-    <Form onSubmit={formik.handleSubmit}>
-      <InputBox inputType="text" inputValue={formik.values.name} 
-                name="Name" onChangeFun={formik.handleChange} 
+    <Form >
+      <InputBox inputType="text" inputValue={personDetails.name} inputPropertieName='name'
+                title="Name" onChangeFun={handleChanges} 
                 invalidText="Please write your name" />
-      <InputBox inputType="number" inputValue={formik.values.phoneNumber} 
-                name="Phone Number" onChangeFun={formik.handleChange} 
+      <InputBox inputType="number" inputValue={personDetails.phoneNumber} inputPropertieName="phoneNumber"
+                title="Phone Number" onChangeFun={handleChanges} 
                 invalidText="Please insert a phone number." />
-      <SelectInput Name='City' SelectedItem={formik.values.city} 
-                   onChangeFun={formik.handleChange} ListOfOptions={CitiesList}/>
-      <CustomTag values={formik.values.languages} handleChange={formik.setFieldValue} OptionsList={LanguagesList}/>
+      <SelectInput Name='City' SelectedItem={personDetails.city} 
+                   onChangeFun={handleChanges} ListOfOptions={CitiesList}/>
+      <CustomTag values={personDetails.languages} handleChange={setField} OptionsList={LanguagesList}/>
     </Form>
   )
 }
 interface Props{
-  personFormDetails:[IPersonForm, React.Dispatch<React.SetStateAction<IPersonForm>>]
+  personDetails:IPersonForm;
+  handleChanges:{
+    (e: React.ChangeEvent<any>): void;
+    <T_1 = string | React.ChangeEvent<any>>(field: T_1): T_1 extends React.ChangeEvent<any> ? void : (e: string | React.ChangeEvent<any>) => void;
+  }
+  setField:any;
 }
 export default PersonForm 

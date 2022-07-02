@@ -2,18 +2,19 @@ import React from 'react'
 import { InputGroup, FormControl, Form } from 'react-bootstrap'
 
 interface Props{
-    name:string;
+    title:string;
     inputType:string;
     inputValue?:string | number;
     onChangeFun:(e:any)=>void;
     invalidText:string;
+    inputPropertieName:string;
 }
-const InputBox :React.FC<Props> = ({name, inputType, inputValue, onChangeFun, invalidText}) =>
+const InputBox :React.FC<Props> = ({inputPropertieName, title, inputType, inputValue, onChangeFun, invalidText}) =>
 <InputGroup hasValidation className="input-group mb-3">
     <InputGroup.Text>
-        {name}
+        {title}
     </InputGroup.Text>
-    <FormControl type={inputType} value={inputValue} onChange={onChangeFun}/>
+    <FormControl id={inputPropertieName} name={inputPropertieName} type={inputType} value={inputValue} onChange={onChangeFun}/>
     <Form.Control.Feedback type="invalid">
         {invalidText}
     </Form.Control.Feedback>
