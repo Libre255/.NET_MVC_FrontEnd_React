@@ -2,7 +2,6 @@ import { useFormik } from 'formik';
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { IPeople } from '../../Ipeople';
-import { IPersonForm } from '../PersonFormModal/IPersonForm';
 import PersonFormModal from '../PersonFormModal/PersonFormModal';
 
 const PersonDetails :React.FC<Props> = ({Person}) => {
@@ -15,17 +14,13 @@ const PersonDetails :React.FC<Props> = ({Person}) => {
     
         },
     })  
-
-    const handleSaveBtn = (personFormInputs:IPersonForm) => {
-        setShow(false)
-        console.log(personFormInputs);
-    };
-    const handleDeletBtn = ()=>{
-        setShow(false)
-    }
-    const handleShow = () => {
-        setShow(true)};
    
+    const handleDeletBtn = (id:number | undefined)=>{
+        setShow(false)
+        console.log("clicked delet btn");
+        console.log(id);
+    }
+    const handleShow = () => {setShow(true)};
 
     const handleClose = () => {
         setShow(false)
@@ -34,21 +29,20 @@ const PersonDetails :React.FC<Props> = ({Person}) => {
     return(
         <>
             <Button variant="info" onClick={handleShow}> Details </Button>
-            <PersonFormModal title={`${Person.name} Details`} Person={formik.values} 
-                             setFieldValue={formik.setFieldValue} handleChange={formik.handleChange}
+            <PersonFormModal title={`${Person.name} Details`} Person={formik.values} formikActions={formik}
                              modalAction={{
                                 show:show,
                                 handleClose:handleClose
                              }}
                              modalButtons={[
                                 {name:"Save Changes", type:'info'},
-                                {name:"Delet Person", type:'danger'}
+                                {name:"Delet Person", type:'danger', onClickAction:handleDeletBtn}
                              ]}
                              />
         </>
     )
 };
 interface Props{
-    Person:IPersonForm;
+    Person:IPeople;
 };
 export default PersonDetails 

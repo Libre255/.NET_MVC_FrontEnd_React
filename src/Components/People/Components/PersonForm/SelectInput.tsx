@@ -3,14 +3,14 @@ import { InputGroup, Form } from 'react-bootstrap'
 
 interface Props{
     Name:string;
-    onChangeFun:(e:any)=>void;
+    setFieldValue:any;
     ListOfOptions:string[];
     SelectedItem:string;
 }
-const SelectInput :React.FC<Props> = ({Name, onChangeFun, ListOfOptions, SelectedItem}) => 
+const SelectInput :React.FC<Props> = ({Name, setFieldValue, ListOfOptions, SelectedItem}) => 
 <InputGroup className="input-group mb-3">
     <InputGroup.Text>{Name}</InputGroup.Text>
-    <Form.Select value={SelectedItem === "" ? "-- select an option --" : SelectedItem} className="form-select" onChange={onChangeFun}>
+    <Form.Select value={SelectedItem === "" ? "-- select an option --" : SelectedItem} className="form-select" onChange={(e)=>setFieldValue("city", e.target.value)} >
         <option hidden disabled value={"-- select an option --"}> -- select an option -- </option>
         {ListOfOptions.map((optionValue, index) =><option  key={index} value={optionValue}>{optionValue}</option>)}
     </Form.Select>

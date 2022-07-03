@@ -1,15 +1,14 @@
-import { useFormik } from 'formik'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Modal } from 'react-bootstrap'
 import { IPeople } from '../../Ipeople'
 import PersonForm from '../PersonForm/PersonForm'
-import { CleanPersonFormInputs, IPersonForm } from './IPersonForm'
 import PersonModalFooter, { IModalButtons } from './PersonModalFooter'
 
 
 const PersonFormModal :React.FC<Props> = (props) => {
-    const {title, modalAction: showState, Person, modalButtons, handleChange, setFieldValue} = props
-    const {show, handleClose}  = showState;
+    const {title, modalAction: showState, Person, modalButtons, formikActions} = props;
+    const {handleChange, handleSubmit, setFieldValue} = formikActions;
+    const {show, handleClose} = showState;
     
     return(
         <Modal show={show} onHide={handleClose}>
@@ -17,10 +16,9 @@ const PersonFormModal :React.FC<Props> = (props) => {
                 <Modal.Title>{title}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <PersonForm personDetails={Person} handleChanges={handleChange} 
-                            setField={setFieldValue} />
+                <PersonForm personDetails={Person} formikActions={{handleChange, setFieldValue}} />
             </Modal.Body>
-            <PersonModalFooter modalButtons={modalButtons} handleSubmit={handleChange}/>
+            <PersonModalFooter modalButtons={modalButtons} handleSubmit={handleSubmit} personID={Person.id}/>
         </Modal>
     )
 }
@@ -30,18 +28,13 @@ interface Props{
         show:boolean;
         handleClose:()=>void
     };
-    Person:IPersonForm;
+    Person:IPeople;
     modalButtons:IModalButtons[];
-    handleChange:any;
-    setFieldValue:any;
+    formikActions:{
+        handleChange:any;
+        handleSubmit:any;
+        setFieldValue:any;
+    };
 }
 
 export default PersonFormModal;
-
-
-// initialValues:{
-//     name:personValues.name,
-//     phoneNumber:personValues.phoneNumber,
-//     city:personValues.city,
-//     languages:personValues.languages
-// }
