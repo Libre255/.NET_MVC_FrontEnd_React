@@ -8,15 +8,17 @@ interface Props{
     onChangeFun:(e:any)=>void;
     invalidText:string;
     inputPropertieName:string;
+    errorName:any;
 }
-const InputBox :React.FC<Props> = ({inputPropertieName, title, inputType, inputValue, onChangeFun, invalidText}) =>
+const InputBox :React.FC<Props> = ({inputPropertieName, title, inputType, inputValue, onChangeFun, invalidText, errorName}) =>
 <InputGroup hasValidation className="input-group mb-3">
     <InputGroup.Text>
         {title}
     </InputGroup.Text>
-    <FormControl id={inputPropertieName} name={inputPropertieName} type={inputType} value={inputValue} onChange={onChangeFun}/>
+    <FormControl id={inputPropertieName} name={inputPropertieName} isInvalid={!!errorName} required
+                 type={inputType} value={inputValue} onChange={onChangeFun}/>
     <Form.Control.Feedback type="invalid">
-        {invalidText}
+        {errorName}
     </Form.Control.Feedback>
 </InputGroup>
 

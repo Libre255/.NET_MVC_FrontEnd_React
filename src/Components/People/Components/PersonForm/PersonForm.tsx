@@ -10,19 +10,20 @@ import SelectInput from './SelectInput';
 const PersonForm :React.FC<Props> = ({personDetails, formikActions}) => {
   const {CitiesList} = useCities();
   const {LanguagesList} = useLanguages();
-  const {handleChange, setFieldValue} = formikActions;
+  const {handleChange, setFieldValue, errors} = formikActions;
 
   return(
     <Form >
       <InputBox inputType="text" inputValue={personDetails.name} inputPropertieName='name'
-                title="Name" onChangeFun={handleChange} 
+                title="Name" onChangeFun={handleChange} errorName={errors.name}
                 invalidText="Please write your name" />
       <InputBox inputType="number" inputValue={personDetails.phoneNumber} inputPropertieName="phoneNumber"
-                title="Phone Number" onChangeFun={handleChange} 
+                title="Phone Number" onChangeFun={handleChange} errorName={errors.phoneNumber}
                 invalidText="Please insert a phone number." />
-      <SelectInput Name='City' SelectedItem={personDetails.city} 
+      <SelectInput Name='City' SelectedItem={personDetails.city} errorName={errors.city}
                    setFieldValue={setFieldValue} ListOfOptions={CitiesList}/>
-      <CustomTag values={personDetails.languages} setFieldValue={setFieldValue} OptionsList={LanguagesList}/>
+      <CustomTag values={personDetails.languages} setFieldValue={setFieldValue} 
+                 OptionsList={LanguagesList} errorName={errors.languages}/>
     </Form>
   )
 }
@@ -31,6 +32,7 @@ interface Props{
   formikActions:{
     handleChange:any;
     setFieldValue:any;
+    errors:any;
   };
 }
 export default PersonForm //contains

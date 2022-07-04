@@ -7,7 +7,6 @@ import PersonModalFooter, { IModalButtons } from './PersonModalFooter'
 
 const PersonFormModal :React.FC<Props> = (props) => {
     const {title, modalAction: showState, Person, modalButtons, formikActions} = props;
-    const {handleChange, handleSubmit, setFieldValue} = formikActions;
     const {show, handleClose} = showState;
     
     return(
@@ -16,9 +15,9 @@ const PersonFormModal :React.FC<Props> = (props) => {
                 <Modal.Title>{title}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <PersonForm personDetails={Person} formikActions={{handleChange, setFieldValue}} />
+                <PersonForm personDetails={Person} formikActions={formikActions}/>
             </Modal.Body>
-            <PersonModalFooter modalButtons={modalButtons} handleSubmit={handleSubmit} personID={Person.id}/>
+            <PersonModalFooter modalButtons={modalButtons} handleSubmit={formikActions.handleSubmit} personID={Person.id}/>
         </Modal>
     )
 }
@@ -34,6 +33,7 @@ interface Props{
         handleChange:any;
         handleSubmit:any;
         setFieldValue:any;
+        errors:any;
     };
 }
 
