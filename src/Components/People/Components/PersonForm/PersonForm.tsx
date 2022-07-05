@@ -1,3 +1,4 @@
+import { FormikProps } from 'formik';
 import React from 'react'
 import { Form } from 'react-bootstrap'
 import { useCities } from '../../../../Citites/Hooks/useCities';
@@ -15,11 +16,9 @@ const PersonForm :React.FC<Props> = ({personDetails, formikActions}) => {
   return(
     <Form >
       <InputBox inputType="text" inputValue={personDetails.name} inputPropertieName='name'
-                title="Name" onChangeFun={handleChange} errorName={errors.name}
-                invalidText="Please write your name" />
+                title="Name" onChangeFun={handleChange} errorName={errors.name} />
       <InputBox inputType="number" inputValue={personDetails.phoneNumber} inputPropertieName="phoneNumber"
-                title="Phone Number" onChangeFun={handleChange} errorName={errors.phoneNumber}
-                invalidText="Please insert a phone number." />
+                title="Phone Number" onChangeFun={handleChange} errorName={errors.phoneNumber}/>
       <SelectInput Name='City' SelectedItem={personDetails.city} errorName={errors.city}
                    setFieldValue={setFieldValue} ListOfOptions={CitiesList}/>
       <CustomTag values={personDetails.languages} setFieldValue={setFieldValue} 
@@ -29,10 +28,6 @@ const PersonForm :React.FC<Props> = ({personDetails, formikActions}) => {
 }
 interface Props{
   personDetails:IPeople;
-  formikActions:{
-    handleChange:any;
-    setFieldValue:any;
-    errors:any;
-  };
+  formikActions:FormikProps<IPeople>;
 }
 export default PersonForm //contains

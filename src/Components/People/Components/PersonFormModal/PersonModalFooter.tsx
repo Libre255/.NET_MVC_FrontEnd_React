@@ -22,7 +22,7 @@ const PersonModalFooter :React.FC<Props> = ({modalButtons, handleSubmit, personI
 
 interface Props{
     modalButtons:IModalButtons[];
-    handleSubmit:any;
+    handleSubmit:(e?: React.FormEvent<HTMLFormElement> | undefined) => void;
     personID:number | undefined;
 }
 export interface IModalButtons{

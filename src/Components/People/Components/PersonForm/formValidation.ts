@@ -1,7 +1,7 @@
 import { IPeople } from "../../Ipeople";
 
 export const formValidation = (values:IPeople) =>{
-    let errors:IErrors = {}
+    let errors:IErrorsForm = {}
     
     if(!values.name){
         errors.name = "Please insert name";
@@ -21,9 +21,11 @@ export const formValidation = (values:IPeople) =>{
     }else return errors;
 }
 
-interface IErrors {
+export interface IErrorsForm {
     name?:string;
     phoneNumber?:string;
     city?:string;
     languages?:string;
 };
+
+export type IErrorPropertie = string | undefined; 

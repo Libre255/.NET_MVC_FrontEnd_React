@@ -13,7 +13,7 @@ const CustomTag :React.FC<Props> = ({values, setFieldValue, OptionsList, errorNa
   return(
     <InputGroup className="input-group mb-3">
         <InputGroup.Text id="basic-addon1">Language</InputGroup.Text>
-        <Dropdown onInvalid={errorName}>
+        <Dropdown>
           <ListOfTags values={values} setFieldValue={setFieldValue} errorName={errorName}/>
           <CustomToggleBtn/> 
           <Dropdown.Menu >
@@ -28,8 +28,8 @@ const CustomTag :React.FC<Props> = ({values, setFieldValue, OptionsList, errorNa
 }
 interface Props{
   values:string[];
-  setFieldValue: any;
+  setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
   OptionsList:string[];
-  errorName:any;
+  errorName:string | string[] | undefined;
 }
 export default CustomTag 

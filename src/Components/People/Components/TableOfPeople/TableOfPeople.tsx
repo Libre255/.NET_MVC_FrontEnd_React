@@ -3,18 +3,23 @@ import {Table} from 'react-bootstrap';
 import PersonRow from './PersonRow';
 import { IPeople } from '../../Ipeople';
 import { FilterByPeopleName } from '../../Methods/FilterByPeopleName';
+import { usePeople } from '../../Hooks/usePeople';
 
-const TableOfPeople :React.FC<Props> = ({ListOfPeople, SearchInput}) =>
-<Table striped bordered hover variant='dark'>
-    <TableHead/>
-    <tbody>
-        {ListOfPeople
-          .filter(People => FilterByPeopleName(People.name, SearchInput))
-          .map((People) => <PersonRow key={People.id} Person={People}/>)}
-    </tbody>
-</Table>;
+const TableOfPeople :React.FC<Props> = ({SearchInput}) =>{
+  const {listOfPeople} = usePeople();
+
+  return(
+    <Table striped bordered hover variant='dark'>
+      <TableHead/>
+      <tbody>
+          {listOfPeople
+            .filter(People => FilterByPeopleName(People.name, SearchInput))
+            .map((People) => <PersonRow key={People.id} Person={People}/>)}
+      </tbody>
+    </Table>
+  )
+}
 interface Props {
-  ListOfPeople:IPeople[];
   SearchInput:string;
 };
 

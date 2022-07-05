@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { usePeople } from '../People/Hooks/usePeople';
 import TableOfPeople from '../People/Components/TableOfPeople/TableOfPeople';
 import styles from './App.module.css';
 import GlobalContext from './GlobalContext';
@@ -9,7 +8,6 @@ import ListOfPeopleTitle from './ListOfPeopleTitle';
 const AppStyle:string = `${styles.App} ${styles.Center} border border-dark container mt-5`;
 
 function App() {
-  const {listOfPeople} = usePeople();
   const [SearchInput, setSearchInput] = useState<string>("");
  
   return (
@@ -17,7 +15,7 @@ function App() {
       <div className={AppStyle}>
         <ListOfPeopleTitle/>
         <HeaderInputs setSearchInput={setSearchInput}/>
-        <TableOfPeople ListOfPeople={listOfPeople} SearchInput={SearchInput}/>
+        <TableOfPeople SearchInput={SearchInput}/>
       </div>
     </GlobalContext>
   );

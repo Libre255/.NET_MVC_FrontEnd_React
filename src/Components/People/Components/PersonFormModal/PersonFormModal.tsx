@@ -1,3 +1,4 @@
+import { FormikProps } from 'formik'
 import React from 'react'
 import { Modal } from 'react-bootstrap'
 import { IPeople } from '../../Ipeople'
@@ -29,12 +30,7 @@ interface Props{
     };
     Person:IPeople;
     modalButtons:IModalButtons[];
-    formikActions:{
-        handleChange:any;
-        handleSubmit:any;
-        setFieldValue:any;
-        errors:any;
-    };
+    formikActions:FormikProps<IPeople>;
 }
 
 export default PersonFormModal;

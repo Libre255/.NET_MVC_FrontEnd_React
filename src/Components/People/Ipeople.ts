@@ -1,7 +1,7 @@
 export interface IPeople{
     id:number | undefined;
     name:string;
-    phoneNumber:string;
+    phoneNumber:number | string;
     city:string;
     languages:string[];
 }

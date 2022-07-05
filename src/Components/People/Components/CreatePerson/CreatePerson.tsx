@@ -11,10 +11,11 @@ const CreatePerson :React.FC = () => {
     const formik = useFormik({
         initialValues:CleanPersonFormInputs,
         onSubmit: values => {
-            
-          alert(JSON.stringify(values, null, 2));
-            // setshow(false)
-            //const {data} = await axios.post('https://localhost:7293/ReactMVCPeopleList/AddPerson',NewPeopleData); 
+            axios.post('https://localhost:7293/ReactMVCPeopleList/AddPerson', values)
+            .then(response => {
+                setshow(false);
+                window.location.reload();
+            })
         },
         validate:formValidation
     }) 
